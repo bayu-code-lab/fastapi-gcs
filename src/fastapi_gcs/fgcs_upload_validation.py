@@ -1,6 +1,6 @@
 from fastapi import UploadFile
 
-class UploadValidation:
+class FGCSUploadValidation:
     @classmethod
     async def convert_size(cls, size_bytes):
         try:
