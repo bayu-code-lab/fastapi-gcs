@@ -1,6 +1,7 @@
+import base64
 from fastapi import UploadFile
-from upload_validation import UploadValidation
-from generate import Generate
+from .upload_validation import UploadValidation
+from .generate import Generate
 from google.cloud import storage
 
 class FailedValidation(Exception):
@@ -23,14 +24,15 @@ class Upload:
             if await UploadValidation.extensions_validation(file, allowed_extension):
                 if await UploadValidation.size_validation(file_size, maximum_size):
                     blob_path = f'{path}/{file.filename}'
-                    key = Generate.encryption_key()
-                    blob = bucket.blob(blob_path, encryption_key=key)
+                    key = await Generate.encryption_key()
+                    b64_decode_key = base64.b64decode(key)
+                    blob = bucket.blob(blob_path, encryption_key=b64_decode_key)
                     file.file.seek(0)
                     blob.upload_from_file(file_obj=file.file, content_type=file.content_type)
                     return {
                                 'name': file.filename, 
                                 'file_url': blob_path, 
-                                'file_size': UploadValidation.convert_size(file_size), 
+                                'file_size': await UploadValidation.convert_size(file_size), 
                                 'content_type': file.content_type,
                                 'encryption_key': key
                             }

@@ -24,14 +24,10 @@ class Generate:
     @classmethod
     async def encryption_key(cls, include_sha256_key: bool = False):
         try:
-            b64_encoded_aes_key = cls.__b64_encode_aes_key()
+            b64_encoded_aes_key = await cls.__b64_encode_aes_key()
             if include_sha256_key:
-                b64_encoded_sha256_key = cls.__b64_encode_sha256_key(b64_encoded_aes_key)
+                b64_encoded_sha256_key = await cls.__b64_encode_sha256_key(b64_encoded_aes_key)
                 return b64_encoded_aes_key, b64_encoded_sha256_key
             return b64_encoded_aes_key
         except Exception as e:
             raise e
-
-
-
-print(GenerateKey.get_encryption_key(True))
