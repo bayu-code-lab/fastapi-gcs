@@ -10,7 +10,7 @@ Python 3.7+
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install fast-api-gcs
 
 ---> 100%
 ```
