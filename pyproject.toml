@@ -1,16 +1,20 @@
 [build-system]
-requires = ["setuptools>=61.0", "google-cloud-storage==2.5.0", "fastapi==0.85.1"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "fast_api_gcs"
-version = "0.0.7"
+version = "0.0.8"
 authors = [
   { name="Bayu Satria Gemilang", email="bayu.code.lab@gmail.com" },
 ]
 description = "Fast API Google Cloud Storage"
 readme = "README.md"
 requires-python = ">=3.7"
+dependencies = [
+    "google-cloud-storage>=2.5.0",
+    "fastapi>=0.85.1"
+]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",

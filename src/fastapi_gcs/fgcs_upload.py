@@ -96,11 +96,11 @@ class FGCSUpload:
                                 })
                         if is_public:
                             blob.make_public()
-                        return documents
                     else:
                         raise FailedValidation(reason='attachment size exceeds the maximum size', message='validation failed', file_name=file_object.filename)
                 else:
                     raise FailedValidation(reason='unsupported extension', message='validation failed', file_name=file_object.filename)
+            return documents
         except Exception as e:
             raise e
 
@@ -134,10 +134,10 @@ class FGCSUpload:
                                     'file_size': await FGCSUploadValidation.convert_size(file_size), 
                                     'content_type': file_object.content_type
                                 })
-                        return documents
                     else:
                         raise FailedValidation(reason='attachment size exceeds the maximum size', message='validation failed', file_name=file_object.filename)
                 else:
                     raise FailedValidation(reason='unsupported extension', message='validation failed', file_name=file_object.filename)
+            return documents
         except Exception as e:
             raise e
