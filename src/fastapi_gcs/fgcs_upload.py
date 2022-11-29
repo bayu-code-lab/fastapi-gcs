@@ -35,7 +35,7 @@ class FGCSUpload:
                     blob.upload_from_file(file_obj=file.file, content_type=file.content_type)
                     return {
                         'file_name': file_name if file_name else file.filename,
-                        'file_path': blob_path,
+                        'file_path': f'{bucket_name}/{blob_path}',
                         'file_size': await FGCSUploadValidation.convert_size(file_size),
                         'content_type': file.content_type,
                         'encryption_key': key
@@ -68,7 +68,7 @@ class FGCSUpload:
                         blob.make_public()
                     return {
                         'file_name': file_name if file_name else file.filename,
-                        'file_path': blob_path,
+                        'file_path': f'{bucket_name}/{blob_path}',
                         'file_size': await FGCSUploadValidation.convert_size(file_size),
                         'content_type': file.content_type
                     }
@@ -104,7 +104,7 @@ class FGCSUpload:
                         blob.upload_from_file(file_obj=file_object.file, content_type=file_object.content_type)
                         documents.append({
                             'file_name': file_name if is_custom_file_name else file_object.filename,
-                            'file_path': blob_path,
+                            'file_path': f'{bucket_name}/{blob_path}',
                             'file_size': await FGCSUploadValidation.convert_size(file_size),
                             'content_type': file_object.content_type
                         })
@@ -148,7 +148,7 @@ class FGCSUpload:
                         blob.upload_from_file(file_obj=file_object.file, content_type=file_object.content_type)
                         documents.append({
                             'file_name': file_name if is_custom_file_name else file_object.filename,
-                            'file_path': blob_path,
+                            'file_path': f'{bucket_name}/{blob_path}',
                             'file_size': await FGCSUploadValidation.convert_size(file_size),
                             'content_type': file_object.content_type
                         })
