@@ -34,6 +34,8 @@ class FGCSUpload:
                     file.file.seek(0)
                     blob.upload_from_file(file_obj=file.file, content_type=file.content_type)
                     return {
+                        'bucket': bucket_name,
+                        'blob_path': blob_path,
                         'file_name': file_name if file_name else file.filename,
                         'file_path': f'{bucket_name}/{blob_path}',
                         'file_size': await FGCSUploadValidation.convert_size(file_size),
@@ -67,6 +69,8 @@ class FGCSUpload:
                     if is_public:
                         blob.make_public()
                     return {
+                        'bucket': bucket_name,
+                        'blob_path': blob_path,
                         'file_name': file_name if file_name else file.filename,
                         'file_path': f'{bucket_name}/{blob_path}',
                         'file_size': await FGCSUploadValidation.convert_size(file_size),
@@ -103,6 +107,8 @@ class FGCSUpload:
                             blob = bucket.blob(f'{blob_path}_{str(uuid4())}')
                         blob.upload_from_file(file_obj=file_object.file, content_type=file_object.content_type)
                         documents.append({
+                            'bucket': bucket_name,
+                            'blob_path': blob_path,
                             'file_name': file_name if is_custom_file_name else file_object.filename,
                             'file_path': f'{bucket_name}/{blob_path}',
                             'file_size': await FGCSUploadValidation.convert_size(file_size),
@@ -147,6 +153,8 @@ class FGCSUpload:
                             blob = bucket.blob(f'{blob_path}_{str(uuid4())}')
                         blob.upload_from_file(file_obj=file_object.file, content_type=file_object.content_type)
                         documents.append({
+                            'bucket': bucket_name,
+                            'blob_path': blob_path,
                             'file_name': file_name if is_custom_file_name else file_object.filename,
                             'file_path': f'{bucket_name}/{blob_path}',
                             'file_size': await FGCSUploadValidation.convert_size(file_size),
